@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.10.3",
+    "@strapi/plugin-graphql": "^5.10.3",
     "@strapi/plugin-users-permissions": "5.10.3",
     "@strapi/strapi": "5.10.3",
     "better-sqlite3": "11.3.0",
@@ -31,6 +32,7 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "b266977f-5de8-4079-a5e8-337b8cc877e9"
+    "uuid": "b266977f-5de8-4079-a5e8-337b8cc877e9",
+    "telemetryDisabled": true
   }
 }
