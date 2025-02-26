@@ -9,7 +9,7 @@ import {
   mantineHtmlProps,
 } from "@mantine/core";
 import type { Metadata } from "next";
-import { theme } from './theme';
+import { theme } from '@/theme';
 import { ApolloWrapper } from '@/lib/apollo-wrapper';
 
 export const metadata: Metadata = {
