@@ -234,6 +234,31 @@ const SvgIcon = ({
         />
       </svg>
     ),
+    arrowRight: (
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...classNameValue}
+      >
+        <path
+          d="M13.167 7.81712L3.16699 7.81712"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9.13379 3.8008C9.13379 3.8008 13.1671 5.9748 13.1671 7.81613C13.1671 9.6588 9.13379 11.8335 9.13379 11.8335"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
   };
 
   const Icon = icons[iconName];

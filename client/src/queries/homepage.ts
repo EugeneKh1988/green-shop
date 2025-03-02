@@ -4,6 +4,7 @@ export const homePageQuery = gql`
   query {
     homepage {
       header
+      carousel
       images {
         name
         url
