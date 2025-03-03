@@ -50,6 +50,21 @@ export interface IInfoItem {
 export interface IInfo {
   items: IInfoItem[];
 }
+
+// blogs
+export interface IBlog {
+  cover?: {
+    name?: string;
+    url?: string;
+  };
+  documentId: string;
+  publishedAt?: string;
+  readTime?: number;
+  slug?: string;
+  title?: string;
+  description?: string;
+}
+
 export interface IHomePage {
   homepage: {
     header: IHeader;
@@ -57,4 +72,5 @@ export interface IHomePage {
     carousel: ICarousel;
     info: IInfo;
   };
+  blogs: IBlog[];
 }

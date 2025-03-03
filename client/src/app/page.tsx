@@ -1,12 +1,13 @@
 import CarouselBlock from "@/components/Carousel";
+import HomeBlog from "@/components/HomeBlog";
 import Info from "@/components/Info";
 import Nav from "@/components/Nav";
 import { getClient } from "@/lib/ApolloClient";
 import { IHomePage } from "@/lib/Interfaces";
-import { homePageQuery } from "@/queries/homepage";
+import { homePageQuery, variables } from "@/queries/homepage";
 
 export default async function Home() {
-  const {data} = await getClient().query<IHomePage>({query: homePageQuery});
+  const {data} = await getClient().query<IHomePage>({query: homePageQuery,variables: variables});
   //console.log(data);
 
   return (
@@ -21,6 +22,7 @@ export default async function Home() {
         images={data.homepage.images}
       />
       <Info info={data.homepage.info} images={data.homepage.images} />
+      <HomeBlog posts={data.blogs} />
     </>
   );
 }
