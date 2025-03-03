@@ -1,4 +1,5 @@
 import CarouselBlock from "@/components/Carousel";
+import Info from "@/components/Info";
 import Nav from "@/components/Nav";
 import { getClient } from "@/lib/ApolloClient";
 import { IHomePage } from "@/lib/Interfaces";
@@ -19,6 +20,7 @@ export default async function Home() {
         carousel={data.homepage.carousel}
         images={data.homepage.images}
       />
+      <Info info={data.homepage.info} images={data.homepage.images} />
     </>
   );
 }

@@ -35,10 +35,26 @@ export interface ICarousel {
   content?: ICarouselSlide[];
 }
 
+// info
+
+export interface IInfoItem {
+  title?: string;
+  description?: string;
+  imageName?: string;
+  button?: {
+    name?: string;
+    href?: string;
+  }
+}
+
+export interface IInfo {
+  items: IInfoItem[];
+}
 export interface IHomePage {
   homepage: {
     header: IHeader;
     images: IImage[];
-    carousel: ICarousel
+    carousel: ICarousel;
+    info: IInfo;
   };
 }
