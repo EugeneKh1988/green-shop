@@ -2,6 +2,7 @@ import CarouselBlock from "@/components/Carousel";
 import HomeBlog from "@/components/HomeBlog";
 import Info from "@/components/Info";
 import Nav from "@/components/Nav";
+import NewsLetter from "@/components/NewsLetter";
 import { getClient } from "@/lib/ApolloClient";
 import { IHomePage } from "@/lib/Interfaces";
 import { homePageQuery, variables } from "@/queries/homepage";
@@ -23,6 +24,10 @@ export default async function Home() {
       />
       <Info info={data.homepage.info} images={data.homepage.images} />
       <HomeBlog posts={data.blogs} />
+      <NewsLetter
+        newsletter={data.homepage.newsletter}
+        images={data.homepage.images}
+      />
     </>
   );
 }

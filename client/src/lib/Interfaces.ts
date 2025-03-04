@@ -5,8 +5,10 @@ interface ILink {
 }
 
 export interface IImage {
-    name: string;
-    url: string;
+  name: string;
+  url: string;
+  width?: number;
+  height?: number;
 }
 
 export interface IHeader {
@@ -65,12 +67,23 @@ export interface IBlog {
   description?: string;
 }
 
+// newsletter
+export interface INewsLetter {
+  imageName?: string;
+  title?: string;
+  description?: string;
+}
+
+export interface INewsLetters {
+  features?: INewsLetter[];
+}
 export interface IHomePage {
   homepage: {
     header: IHeader;
     images: IImage[];
     carousel: ICarousel;
     info: IInfo;
+    newsletter: INewsLetters;
   };
   blogs: IBlog[];
 }

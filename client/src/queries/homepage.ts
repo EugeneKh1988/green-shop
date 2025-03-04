@@ -10,9 +10,12 @@ export const homePageQuery = gql`
       header
       carousel
       info
+      newsletter
       images {
         name
         url
+        width
+        height
       }
     }
     blogs(pagination: $pagination, status: $status, sort: $sort) {

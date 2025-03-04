@@ -30,6 +30,12 @@
     },
     "info": {
       "type": "json"
+    },
+    "newsletter": {
+      "type": "json"
+    },
+    "contacts": {
+      "type": "json"
     }
   }
 }
