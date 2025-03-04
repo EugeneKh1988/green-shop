@@ -77,6 +77,15 @@ export interface INewsLetter {
 export interface INewsLetters {
   features?: INewsLetter[];
 }
+
+export interface IContactItem {
+  text?: string;
+  iconName?: string;
+}
+
+export interface IContactItems {
+  items?: IContactItem[];
+}
 export interface IHomePage {
   homepage: {
     header: IHeader;
@@ -84,6 +93,7 @@ export interface IHomePage {
     carousel: ICarousel;
     info: IInfo;
     newsletter: INewsLetters;
+    contacts: IContactItems;
   };
   blogs: IBlog[];
 }

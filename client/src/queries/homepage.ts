@@ -11,6 +11,7 @@ export const homePageQuery = gql`
       carousel
       info
       newsletter
+      contacts
       images {
         name
         url

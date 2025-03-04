@@ -1,4 +1,5 @@
 import CarouselBlock from "@/components/Carousel";
+import Contacts from "@/components/Contacts";
 import HomeBlog from "@/components/HomeBlog";
 import Info from "@/components/Info";
 import Nav from "@/components/Nav";
@@ -26,6 +27,11 @@ export default async function Home() {
       <HomeBlog posts={data.blogs} />
       <NewsLetter
         newsletter={data.homepage.newsletter}
+        images={data.homepage.images}
+      />
+      <Contacts
+        contacts={data.homepage.contacts}
+        header={data.homepage.header}
         images={data.homepage.images}
       />
     </>

@@ -36,6 +36,9 @@
     },
     "contacts": {
       "type": "json"
+    },
+    "footer": {
+      "type": "json"
     }
   }
 }
