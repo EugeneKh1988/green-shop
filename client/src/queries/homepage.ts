@@ -12,6 +12,7 @@ export const homePageQuery = gql`
       info
       newsletter
       contacts
+      footer
       images {
         name
         url

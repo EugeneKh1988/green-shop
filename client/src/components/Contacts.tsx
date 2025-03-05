@@ -1,7 +1,7 @@
-import { IContactItems, IHeader, IImage, INewsLetters } from "@/lib/Interfaces";
+import { IContactItems, IHeader, IImage } from "@/lib/Interfaces";
 import Container from "@/components/Container";
 import StrapiImage from "@/components/StrapiImage";
-import { getImageHeight, getImageUrl, getImageWidth } from "@/utils/utils";
+import { getImageUrl } from "@/utils/utils";
 import SvgIcon from "./SvgIcon";
 import Link from "next/link";
 

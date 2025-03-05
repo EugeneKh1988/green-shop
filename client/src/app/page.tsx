@@ -1,5 +1,6 @@
 import CarouselBlock from "@/components/Carousel";
 import Contacts from "@/components/Contacts";
+import Footer from "@/components/Footer";
 import HomeBlog from "@/components/HomeBlog";
 import Info from "@/components/Info";
 import Nav from "@/components/Nav";
@@ -34,6 +35,7 @@ export default async function Home() {
         header={data.homepage.header}
         images={data.homepage.images}
       />
+      <Footer footer={data.homepage.footer} />
     </>
   );
 }

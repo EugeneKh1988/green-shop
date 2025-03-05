@@ -78,6 +78,7 @@ export interface INewsLetters {
   features?: INewsLetter[];
 }
 
+// contacts 
 export interface IContactItem {
   text?: string;
   iconName?: string;
@@ -85,6 +86,22 @@ export interface IContactItem {
 
 export interface IContactItems {
   items?: IContactItem[];
+}
+
+// footer
+export interface IFooterGroup {
+  groupName?: string;
+  links?: ILink[];
+}
+
+export interface ISocial {
+  iconName?: string;
+  href?: string;
+}
+
+export interface IFooterGroups {
+  blocks?: IFooterGroup[];
+  social?: ISocial[];
 }
 export interface IHomePage {
   homepage: {
@@ -94,6 +111,7 @@ export interface IHomePage {
     info: IInfo;
     newsletter: INewsLetters;
     contacts: IContactItems;
+    footer: IFooterGroups;
   };
   blogs: IBlog[];
 }
