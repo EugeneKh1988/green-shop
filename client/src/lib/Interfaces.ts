@@ -99,19 +99,64 @@ export interface ISocial {
   href?: string;
 }
 
+// plants categories
+export interface IPlantCategory {
+  name?: string;
+  slug?: string;
+}
+
+// plant sizes
+export interface IPlantSize {
+  name?: string;
+  slug?: string;
+}
+
 export interface IFooterGroups {
   blocks?: IFooterGroup[];
   social?: ISocial[];
+}
+
+// banner for homepage
+export interface IBanner {
+  title?: string;
+  offer?: string;
+  href?: string;
+  imageName?: string;
+}
+
+export interface IPlant {
+  documentId?: string;
+  name?: string;
+  price?: number;
+  discount?: number;
+  cover?: IImage;
+  slug?: string;
+  category?: IPlantCategory;
+}
+
+export interface IPlantPage {
+  pageCount?: number;
+  total?: number;
+}
+
+export interface IPlants {
+  plants_connection: {
+    nodes: IPlant[];
+    pageInfo?: IPlantPage;
+  };
 }
 export interface IHomePage {
   homepage: {
     header: IHeader;
     images: IImage[];
     carousel: ICarousel;
+    banner: IBanner;
     info: IInfo;
     newsletter: INewsLetters;
     contacts: IContactItems;
     footer: IFooterGroups;
   };
   blogs: IBlog[];
+  categories: IPlantCategory[];
+  sizes: IPlantSize[];
 }

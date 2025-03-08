@@ -4,7 +4,8 @@
   "info": {
     "singularName": "plant",
     "pluralName": "plants",
-    "displayName": "Plant"
+    "displayName": "Plant",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,14 +15,15 @@
       "type": "string"
     },
     "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "price": {
       "type": "decimal"
@@ -41,6 +43,10 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "plants"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }

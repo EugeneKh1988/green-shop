@@ -39,6 +39,9 @@
     },
     "footer": {
       "type": "json"
+    },
+    "banner": {
+      "type": "json"
     }
   }
 }

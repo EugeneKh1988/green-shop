@@ -441,6 +441,7 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    banner: Schema.Attribute.JSON;
     carousel: Schema.Attribute.JSON;
     contacts: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
@@ -470,6 +471,7 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
 export interface ApiPlantPlant extends Struct.CollectionTypeSchema {
   collectionName: 'plants';
   info: {
+    description: '';
     displayName: 'Plant';
     pluralName: 'plants';
     singularName: 'plant';
@@ -491,6 +493,7 @@ export interface ApiPlantPlant extends Struct.CollectionTypeSchema {
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     size: Schema.Attribute.Relation<'manyToOne', 'api::size.size'>;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
