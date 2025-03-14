@@ -124,6 +124,20 @@ export interface IBanner {
   imageName?: string;
 }
 
+export interface ITextBlock {
+  type?: string;
+  children?: {
+    type?: string;
+    text?: string;
+    bold?: boolean;
+  }[];
+}
+
+export interface ISizeCount {
+  count?: number;
+  size?: string;
+}
+
 export interface IPlant {
   documentId?: string;
   name?: string;
@@ -132,6 +146,13 @@ export interface IPlant {
   cover?: IImage;
   slug?: string;
   category?: IPlantCategory;
+  size?: IPlantSize;
+  count?: number;
+  description?: ITextBlock[];
+  photos?: IImage[];
+  sku?: string;
+  shortDescription?: string;
+  sizeCount?: ISizeCount[];
 }
 
 export interface IPlantPage {

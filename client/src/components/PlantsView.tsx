@@ -99,7 +99,11 @@ const PlantsView: React.FC<PlantsViewProps> = ({
           </div>
           <div className="mt-31 grid grid-cols-2 xl:grid-cols-3 gap-33 justify-between content-start">
             {data.plants_connection.nodes.map((plant, index) => (
-              <PlantCard plant={plant} key={plant?.documentId || index} />
+              <PlantCard
+                plant={plant}
+                key={plant?.documentId || index}
+                className="max-w-258"
+              />
             ))}
             <div className="mt-90 col-span-2 xl:col-span-3 flex justify-end">
               {data.plants_connection.nodes.length > 0 ? (

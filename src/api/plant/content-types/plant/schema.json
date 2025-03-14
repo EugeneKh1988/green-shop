@@ -46,7 +46,36 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "name"
+      "targetField": "name",
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "sizeCount": {
+      "type": "component",
+      "repeatable": true,
+      "component": "plant-sizes.plant-sizes"
     }
   }
 }

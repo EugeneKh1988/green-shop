@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_plant_sizes_plant_sizes",
+  "info": {
+    "displayName": "PlantSizes",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "size": {
+      "type": "string",
+      "required": true
+    },
+    "count": {
+      "type": "integer"
+    }
+  }
+}

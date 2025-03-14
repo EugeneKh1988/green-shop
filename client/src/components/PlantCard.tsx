@@ -4,6 +4,7 @@ import StrapiImage from "./StrapiImage";
 import Link from "next/link";
 import { ActionIcon } from "@mantine/core";
 import SvgIcon from "./SvgIcon";
+import { discountPrice } from "@/utils/utils";
 
 interface PlantCardProps {
   plant: IPlant;
@@ -13,15 +14,8 @@ interface PlantCardProps {
 const PlantCard: React.FC<PlantCardProps> = ({ plant, className }) => {
   const classNameValue = className ? `${className}` : "";
 
-  const discountPrice = (discount?: number, price?: number) => {
-    if(price && discount) {
-      return (price - price * discount / 100).toFixed(2);
-    }
-    return price?.toFixed(2);
-  };
-
   return (
-    <div className={`max-w-258 ${classNameValue}`}>
+    <div className={` ${classNameValue}`}>
       <div className="bg-alabaster pt-31 pb-19 px-4 relative border-t-alabaster border-t-1 hover:border-t-chateau-green group">
         <StrapiImage
           src={plant?.cover?.url || "#"}
