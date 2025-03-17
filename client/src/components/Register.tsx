@@ -1,41 +1,53 @@
-
-import { Button, TextInput, } from "@mantine/core";
+import { Button, TextInput } from "@mantine/core";
 import SvgIcon from "./SvgIcon";
 import { useState } from "react";
-import {isEmail, useForm} from "@mantine/form";
+import { hasLength, isEmail, matchesField, useForm } from "@mantine/form";
 import Link from "next/link";
 
-interface LoginProps {
+interface RegisterProps {
   className?: string;
 }
 
-const Login: React.FC<LoginProps> = ({ className }) => {
+const Register: React.FC<RegisterProps> = ({ className }) => {
   const classNameValue = className ? `${className}` : "";
+  const [mode, setMode] = useState<"login" | "register">("login");
   const [shown, viewPassword] = useState(false);
   // form data
   const form = useForm({
     mode: "controlled",
-    initialValues: { email: "", password: "" },
+    initialValues: { name: "", email: "", password: "", confirm: "" },
     validate: {
       email: isEmail("Invalid email"),
       password: (value) =>
-        value.trim().length == 0 ? "Must not be empty" : null,
+        value.trim().length < 8 ? "Must be at least 8 characters" : null,
+      name: hasLength({ min: 3 }, "Must be at least 3 characters"),
+      confirm: matchesField("password", "Passwords are not the same"),
     },
   });
 
   return (
     <div className={`mt-40 ${classNameValue}`}>
       <p className="text-[13px] leading-16">
-        Enter your username and password to login
+        Enter your email and password to register.
       </p>
       <form className="mt-14" onSubmit={form.onSubmit(console.log)}>
         <TextInput
-          placeholder="Email"
+          placeholder="Username"
+          key={form.key("name")}
+          {...form.getInputProps("name")}
+          classNames={{
+            input:
+              "rounded-[5px] border-[#EAEAEA] placeholder:text-[#A5A5A5] focus:border-chateau-green",
+          }}
+        />
+        <TextInput
+          placeholder="Enter your email address"
           key={form.key("email")}
           {...form.getInputProps("email")}
           classNames={{
             input:
               "rounded-[5px] border-[#EAEAEA] placeholder:text-[#A5A5A5] focus:border-chateau-green",
+            root: "mt-17",
           }}
         />
         <TextInput
@@ -60,27 +72,29 @@ const Login: React.FC<LoginProps> = ({ className }) => {
             )
           }
         />
-        <div className="text-right">
-          <Link
-            href="#"
-            onClick={() => console.log("forgot password link")}
-            className="text-[14px] leading-16 mt-14 text-chateau-green"
-          >
-            Forgot Password?
-          </Link>
-        </div>
+        <TextInput
+          placeholder="Confirm Password"
+          type={shown ? "text" : "password"}
+          key={form.key("confirm")}
+          {...form.getInputProps("confirm")}
+          classNames={{
+            input:
+              "rounded-[5px] border-[#EAEAEA] placeholder:text-[#A5A5A5] focus:border-chateau-green",
+            root: "mt-17",
+          }}
+        />
         <Button
           type="submit"
           classNames={{
             root: "mt-27 bg-chateau-green hover:bg-chateau-green-600 text-white font-medium text-[16px] leading-16 rounded-[5px] min-h-45 w-full",
           }}
         >
-          Login
+          Register
         </Button>
       </form>
       <div className="flex gap-10 items-center mt-45">
         <div className="grow h-1 bg-[#EAEAEA]"></div>
-        <p className="text-[13px] leading-16">Or login with</p>
+        <p className="text-[13px] leading-16">Or register with</p>
         <div className="grow h-1 bg-[#EAEAEA]"></div>
       </div>
       <Button
@@ -89,7 +103,7 @@ const Login: React.FC<LoginProps> = ({ className }) => {
         }}
         leftSection={<SvgIcon iconName="google" />}
       >
-        Login with Google
+        Continue with Google
       </Button>
       <Button
         classNames={{
@@ -99,10 +113,10 @@ const Login: React.FC<LoginProps> = ({ className }) => {
           <SvgIcon iconName="facebookFill" className="text-[#3B5999]" />
         }
       >
-        Login with Facebook
+        Continue with Facebook
       </Button>
     </div>
   );
 };
 
-export default Login;
+export default Register;

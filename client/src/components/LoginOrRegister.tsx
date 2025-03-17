@@ -5,6 +5,7 @@ import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import SvgIcon from "./SvgIcon";
 import { useState } from "react";
 import Login from "./Login";
+import Register from "./Register";
 
 
 interface LoginOrRegisterProps {
@@ -51,7 +52,7 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({
             Register
           </p>
         </div>
-        {mode === "login" ? <Login /> : null}
+        {mode === "login" ? <Login /> : <Register />}
       </Modal>
 
       <Button
