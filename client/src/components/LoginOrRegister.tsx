@@ -6,6 +6,7 @@ import SvgIcon from "./SvgIcon";
 import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
+import ForgetPassword from "./ForgetPassword";
 
 
 interface LoginOrRegisterProps {
@@ -18,7 +19,7 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({
   const classNameValue = className ? `${className}` : "";
   const [opened, { open, close }] = useDisclosure(false);
   const isMobile = useMediaQuery("(max-width: 48rem)");
-  const [mode, setMode] = useState<"login" | "register">("login");
+  const [mode, setMode] = useState<"login" | "register" | "forget">("login");
 
   return (
     <>
@@ -52,7 +53,13 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({
             Register
           </p>
         </div>
-        {mode === "login" ? <Login /> : <Register />}
+        {mode === "login" ? (
+          <Login onChangeMode={setMode} />
+        ) : mode === "forget" ? (
+          <ForgetPassword />
+        ) : (
+          <Register />
+        )}
       </Modal>
 
       <Button

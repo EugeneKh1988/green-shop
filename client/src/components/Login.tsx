@@ -7,9 +7,10 @@ import Link from "next/link";
 
 interface LoginProps {
   className?: string;
+  onChangeMode: (mode: "login" | "register" | "forget") => void;
 }
 
-const Login: React.FC<LoginProps> = ({ className }) => {
+const Login: React.FC<LoginProps> = ({ className, onChangeMode }) => {
   const classNameValue = className ? `${className}` : "";
   const [shown, viewPassword] = useState(false);
   // form data
@@ -63,7 +64,7 @@ const Login: React.FC<LoginProps> = ({ className }) => {
         <div className="text-right">
           <Link
             href="#"
-            onClick={() => console.log("forgot password link")}
+            onClick={() => onChangeMode("forget")}
             className="text-[14px] leading-16 mt-14 text-chateau-green"
           >
             Forgot Password?
