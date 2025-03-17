@@ -8,6 +8,7 @@ import NavMenu from "./NavMenu";
 import { getImageUrl } from "@/utils/utils";
 import Image from "next/image";
 import footer from "../../public/footer.svg";
+import LoginOrRegister from "./LoginOrRegister";
 
 interface NavProps {
   header: IHeader;
@@ -65,15 +66,7 @@ const Nav: React.FC<NavProps> = ({
                 6
               </Badge>
             </ActionIcon>
-            <Button
-              leftSection={<SvgIcon iconName="logout" />}
-              classNames={{
-                root: "bg-chateau-green hover:bg-chateau-green-600 text-white font-medium text-[16px] leading-20 rounded-[6px]",
-                section: "mr-4",
-              }}
-            >
-              Login
-            </Button>
+            <LoginOrRegister />
           </div>
           {/*for tablets */}
           <NavMenu
