@@ -2,6 +2,7 @@
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
+import "@mantine/notifications/styles.css";
 import "./globals.css";
 
 import {
@@ -12,6 +13,7 @@ import {
 import type { Metadata } from "next";
 import { theme } from '@/theme';
 import { ApolloWrapper } from '@/lib/apollo-wrapper';
+import { Notifications } from "@mantine/notifications";
 
 export const metadata: Metadata = {
   title: "GreenShop Home page",
@@ -30,6 +32,7 @@ export default function RootLayout({
       </head>
       <body>
         <MantineProvider theme={theme}>
+          <Notifications />
           <ApolloWrapper>{children}</ApolloWrapper>
         </MantineProvider>
       </body>

@@ -1,16 +1,22 @@
 
 import { Button, TextInput, } from "@mantine/core";
 import SvgIcon from "./SvgIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {isEmail, useForm} from "@mantine/form";
 import Link from "next/link";
+import { useMutation } from "@apollo/client";
+import { IUser } from "@/lib/Interfaces";
+import { loginMutation, loginVariables } from "@/queries/login";
+import { notifications } from "@mantine/notifications";
+import { toLocalStorage } from "@/utils/utils";
 
 interface LoginProps {
   className?: string;
   onChangeMode: (mode: "login" | "register" | "forget") => void;
+  onLogged: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ className, onChangeMode }) => {
+const Login: React.FC<LoginProps> = ({ className, onChangeMode, onLogged }) => {
   const classNameValue = className ? `${className}` : "";
   const [shown, viewPassword] = useState(false);
   // form data
@@ -24,12 +30,43 @@ const Login: React.FC<LoginProps> = ({ className, onChangeMode }) => {
     },
   });
 
+  // mutation
+  const [loginMut, { data, loading, error, reset }] = useMutation<{
+    login: IUser;
+  }>(loginMutation);
+
+  const handleLogin = (values: typeof form.values) => {
+    loginMut({
+      variables: loginVariables(values.email, values.password),
+    });
+  };
+
+  useEffect(() => {
+    if (error) {
+      notifications.show({
+        message: error.message,
+        color: "red",
+        onClose: () => reset(),
+      });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      // save user data
+      toLocalStorage<IUser>("user", data.login);
+      // close modal
+      onLogged();
+    }
+  }, [data]);
+
   return (
     <div className={`mt-40 ${classNameValue}`}>
       <p className="text-[13px] leading-16">
         Enter your username and password to login
       </p>
-      <form className="mt-14" onSubmit={form.onSubmit(console.log)}>
+      <form className="mt-14" onSubmit={form.onSubmit(handleLogin)}>
         <TextInput
           placeholder="Email"
           key={form.key("email")}
@@ -72,6 +109,7 @@ const Login: React.FC<LoginProps> = ({ className, onChangeMode }) => {
         </div>
         <Button
           type="submit"
+          loading={loading}
           classNames={{
             root: "mt-27 bg-chateau-green hover:bg-chateau-green-600 text-white font-medium text-[16px] leading-16 rounded-[5px] min-h-45 w-full",
           }}

@@ -1,16 +1,20 @@
 import { Button, TextInput } from "@mantine/core";
 import SvgIcon from "./SvgIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { hasLength, isEmail, matchesField, useForm } from "@mantine/form";
-import Link from "next/link";
+import { useMutation } from "@apollo/client";
+import { registerMutation, registerVariables } from "@/queries/register";
+import { notifications } from "@mantine/notifications";
+import { IUser } from "@/lib/Interfaces";
+import { toLocalStorage } from "@/utils/utils";
 
 interface RegisterProps {
   className?: string;
+  onLogged: () => void;
 }
 
-const Register: React.FC<RegisterProps> = ({ className }) => {
+const Register: React.FC<RegisterProps> = ({ className, onLogged }) => {
   const classNameValue = className ? `${className}` : "";
-  const [mode, setMode] = useState<"login" | "register">("login");
   const [shown, viewPassword] = useState(false);
   // form data
   const form = useForm({
@@ -24,13 +28,42 @@ const Register: React.FC<RegisterProps> = ({ className }) => {
       confirm: matchesField("password", "Passwords are not the same"),
     },
   });
+  // mutation
+  const [registerMut, { data, loading, error, reset }] = useMutation<{
+    register: IUser;
+  }>(registerMutation);
+
+  const handleRegister = (values: typeof form.values) => {
+    registerMut({
+      variables: registerVariables(values.name, values.email, values.password),
+    });
+  };
+
+  useEffect(() => {
+    if (error) {
+      notifications.show({
+        message: error.message,
+        color: "red",
+        onClose: () => reset(),
+      });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (data) {
+      // save user data
+      toLocalStorage<IUser>("user", data.register);
+      // close modal 
+      onLogged();
+    }
+  }, [data]);
 
   return (
     <div className={`mt-40 ${classNameValue}`}>
       <p className="text-[13px] leading-16">
         Enter your email and password to register.
       </p>
-      <form className="mt-14" onSubmit={form.onSubmit(console.log)}>
+      <form className="mt-14" onSubmit={form.onSubmit(handleRegister)}>
         <TextInput
           placeholder="Username"
           key={form.key("name")}
@@ -84,6 +117,7 @@ const Register: React.FC<RegisterProps> = ({ className }) => {
           }}
         />
         <Button
+          loading={loading}
           type="submit"
           classNames={{
             root: "mt-27 bg-chateau-green hover:bg-chateau-green-600 text-white font-medium text-[16px] leading-16 rounded-[5px] min-h-45 w-full",

@@ -3,10 +3,12 @@
 import { Button, Modal } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import SvgIcon from "./SvgIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 import ForgetPassword from "./ForgetPassword";
+import { delFromLocalStorage, fromLocalStorage } from "@/utils/utils";
+import { IUser } from "@/lib/Interfaces";
 
 
 interface LoginOrRegisterProps {
@@ -20,6 +22,22 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({
   const [opened, { open, close }] = useDisclosure(false);
   const isMobile = useMediaQuery("(max-width: 48rem)");
   const [mode, setMode] = useState<"login" | "register" | "forget">("login");
+  const [isLogged, setAuth] = useState(false);
+
+  useEffect(() => {
+    const user = fromLocalStorage<IUser>("user");
+    if(user && user.jwt) {
+      setAuth(true);
+    }
+    else {
+      setAuth(false);
+    }
+  }, [opened]);
+
+  const logout = () => {
+    delFromLocalStorage("user");
+    setAuth(false);
+  };
 
   return (
     <>
@@ -54,24 +72,36 @@ const LoginOrRegister: React.FC<LoginOrRegisterProps> = ({
           </p>
         </div>
         {mode === "login" ? (
-          <Login onChangeMode={setMode} />
+          <Login onChangeMode={setMode} onLogged={close} />
         ) : mode === "forget" ? (
           <ForgetPassword />
         ) : (
-          <Register />
+          <Register onLogged={close} />
         )}
       </Modal>
-
-      <Button
-        leftSection={<SvgIcon iconName="logout" />}
-        classNames={{
-          root: "bg-chateau-green hover:bg-chateau-green-600 text-white font-medium text-[16px] leading-20 rounded-[6px]",
-          section: "mr-4",
-        }}
-        onClick={open}
-      >
-        Login
-      </Button>
+      {isLogged ? (
+        <Button
+          leftSection={<SvgIcon iconName="logout" />}
+          classNames={{
+            root: "bg-chateau-green hover:bg-chateau-green-600 text-white font-medium text-[16px] leading-20 rounded-[6px]",
+            section: "mr-4",
+          }}
+          onClick={logout}
+        >
+          Log out
+        </Button>
+      ) : (
+        <Button
+          leftSection={<SvgIcon iconName="logout" />}
+          classNames={{
+            root: "bg-chateau-green hover:bg-chateau-green-600 text-white font-medium text-[16px] leading-20 rounded-[6px]",
+            section: "mr-4",
+          }}
+          onClick={open}
+        >
+          Login
+        </Button>
+      )}
     </>
   );
 };

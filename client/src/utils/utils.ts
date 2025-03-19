@@ -21,3 +21,24 @@ export const discountPrice = (discount?: number, price?: number) => {
   }
   return price?.toFixed(2);
 };
+
+// get from localStorage
+  export function fromLocalStorage<StorageType>(key:string): StorageType | null  {
+    const itemStr = localStorage.getItem(key);
+    if (itemStr) {
+      const item: StorageType = JSON.parse(itemStr);
+      return item;
+    } else {
+      return null;
+    }
+  }
+
+  // set data to localStorage
+  export function toLocalStorage<StorageType>(key:string, data: StorageType) {
+    localStorage.setItem(key, JSON.stringify(data));
+  };
+
+  // delete data from localStorage
+  export function delFromLocalStorage(key:string) {
+    localStorage.removeItem(key);
+  }

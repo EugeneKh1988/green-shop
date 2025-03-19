@@ -181,3 +181,13 @@ export interface IHomePage {
   categories: IPlantCategory[];
   sizes: IPlantSize[];
 }
+
+export interface IUser {
+  jwt?: string;
+  user?: {
+    username?: string;
+    id?: string;
+    email?: string;
+    confirmed?: boolean;
+  };
+}
