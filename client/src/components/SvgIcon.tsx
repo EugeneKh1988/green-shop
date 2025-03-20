@@ -620,6 +620,106 @@ const SvgIcon = ({
         </defs>
       </svg>
     ),
+    activity: (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...classNameValue}
+      >
+        <path
+          d="M5.1875 11.1404L7.43225 8.22368L9.99275 10.2337L12.1895 7.39868"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M14.7501 1.76245C15.5466 1.76245 16.1916 2.40745 16.1916 3.20395C16.1916 3.9997 15.5466 4.64545 14.7501 4.64545C13.9536 4.64545 13.3086 3.9997 13.3086 3.20395C13.3086 2.40745 13.9536 1.76245 14.7501 1.76245Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M15.5664 6.95179C15.6662 7.62304 15.7119 8.37904 15.7119 9.22729C15.7119 14.4308 13.9779 16.1648 8.77441 16.1648C3.57166 16.1648 1.83691 14.4308 1.83691 9.22729C1.83691 4.02454 3.57166 2.28979 8.77441 2.28979C9.60691 2.28979 10.3502 2.33404 11.0117 2.43004"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+    download: (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...classNameValue}
+      >
+        <path
+          d="M8.90918 11.0933V2.0625"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M11.0962 8.89819L8.90917 11.0942L6.72217 8.89819"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12.2775 5.44409C14.9617 5.69159 15.9375 6.69659 15.9375 10.6941C15.9375 16.0191 14.2043 16.0191 9 16.0191C3.79425 16.0191 2.0625 16.0191 2.0625 10.6941C2.0625 6.69659 3.0375 5.69159 5.7225 5.44409"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+    danger: (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...classNameValue}
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M9 15.75C4.12918 15.75 2.2175 15.404 1.90764 13.6525C1.59779 11.901 3.58037 8.60806 4.19131 7.52135C6.23443 3.88806 7.62279 2.25 9 2.25C10.3772 2.25 11.7656 3.88806 13.8087 7.52135C14.4196 8.60806 16.4022 11.901 16.0924 13.6525C15.7833 15.404 13.8708 15.75 9 15.75Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9 6.375V9.29625"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8.99662 11.9211H9.00337"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
   };
 
   const Icon = icons[iconName];

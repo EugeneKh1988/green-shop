@@ -1,5 +1,4 @@
 import { IBanner, IImage } from "@/lib/Interfaces";
-import { RangeSlider } from "@mantine/core";
 import Link from "next/link";
 import StrapiImage from "./StrapiImage";
 import { getImageUrl } from "@/utils/utils";
