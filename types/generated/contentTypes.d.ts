@@ -399,11 +399,10 @@ export interface ApiAccountDetailAccountDetail
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    user_id: Schema.Attribute.BigInteger &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     userName: Schema.Attribute.String;
-    users_permissions_user: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -1033,10 +1032,6 @@ export interface PluginUsersPermissionsUser
     timestamps: true;
   };
   attributes: {
-    account_detail: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::account-detail.account-detail'
-    >;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
