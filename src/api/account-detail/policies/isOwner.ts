@@ -11,8 +11,20 @@ export default async (policyContext, config, { strapi }) => {
 
   if (results && results.length > 0) {
     const found = results[0];
-    if(found && found.documentId == policyContext.params.id) {
-        return true;
+    console.log(found);
+    // for API
+    if (
+      found &&
+      policyContext.params && found.documentId == policyContext.params.id
+    ) {
+      return true;
+    }
+    // for GraphQL
+    if (
+      found &&
+      policyContext.args && found.documentId == policyContext.args.documentId
+    ) {
+      return true;
     }
   }
 
