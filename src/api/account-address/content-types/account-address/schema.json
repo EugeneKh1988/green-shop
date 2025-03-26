@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "account_addresses",
+  "info": {
+    "singularName": "account-address",
+    "pluralName": "account-addresses",
+    "displayName": "AccountAddress",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "town": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "appartment": {
+      "type": "integer"
+    },
+    "zip": {
+      "type": "integer"
+    },
+    "user_id": {
+      "type": "biginteger",
+      "required": true,
+      "unique": true
+    }
+  }
+}

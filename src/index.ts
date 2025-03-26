@@ -114,6 +114,109 @@ export default {
         },
       },
     }));
+
+    // Disable the queries on the 'account-address' content-type in the 'account-address' API
+    strapi
+      .plugin("graphql")
+      .service("extension")
+      .shadowCRUD("api::account-address.account-address")
+      .disableQueries();
+
+    // Disable the mutations on the 'account-address' content-type in the 'account-address' API
+    strapi
+      .plugin("graphql")
+      .service("extension")
+      .shadowCRUD("api::account-address.account-address")
+      .disableMutations();
+
+    extensionService.use(({ strapi }) => ({
+      typeDefs: `
+        type Query {
+          accountAddress(status: PublicationStatus): AccountAddress
+        }
+
+        type Mutation {
+          createAccountAddress(input: AccountAddressInput!): AccountAddress
+          updateAccountAddress(documentId: ID!, data: AccountAddressInput!): AccountAddress
+        }
+      `,
+      resolvers: {
+        Query: {
+          accountAddress: {
+            resolve: async (parent, args, context) => {
+              const data = await strapi
+                .service("api::account-address.account-address")
+                .findOneAddress([
+                  "town",
+                  "street",
+                  "appartment",
+                  "zip",
+                  "user_id",
+                  "createdAt",
+                  "publishedAt",
+                  "updatedAt",
+                ]);
+
+              //console.log("##################", data.results, "##################");
+              if (data.results && data.results.length > 0) {
+                return data.results[0];
+              }
+              return {documentId: ""};
+            },
+          },
+        },
+        Mutation: {
+          createAccountAddress: {
+            resolve: async (parent, args, context) => {
+              // query
+              const queryParams = args.input;
+              // user's id
+              queryParams.user_id = context.state.user.id;
+              //console.log("Create mutation", queryParams);
+              return await strapi
+                .documents("api::account-address.account-address")
+                .create({
+                  data: queryParams,
+                  status: "published",
+                });
+            },
+          },
+          updateAccountAddress: {
+            resolve: async (parent, args, context) => {
+              // query
+              const queryParams = args.data;
+              // user's id
+              queryParams.user_id = context.state.user.id;
+              //console.log("Update mutation", args);
+              return await strapi
+                .documents("api::account-address.account-address")
+                .update({
+                  documentId: args.documentId,
+                  data: queryParams,
+                  status: "published",
+                });
+            },
+          },
+        },
+      },
+      resolversConfig: {
+        "Query.accountAddress": {
+          policies: ["api::account-address.is-auth"],
+        },
+        "Mutation.createAccountAddress": {
+          policies: [
+            "api::account-address.is-auth",
+            "api::account-address.no-duplicates",
+          ],
+        },
+        "Mutation.updateAccountAddress": {
+          policies: [
+            "api::account-address.is-auth",
+            "api::account-address.is-owner",
+          ],
+        },
+      },
+    }));
   },
 
   /**

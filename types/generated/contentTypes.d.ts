@@ -369,6 +369,42 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAccountAddressAccountAddress
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'account_addresses';
+  info: {
+    description: '';
+    displayName: 'AccountAddress';
+    pluralName: 'account-addresses';
+    singularName: 'account-address';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    appartment: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::account-address.account-address'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    street: Schema.Attribute.String;
+    town: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_id: Schema.Attribute.BigInteger &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    zip: Schema.Attribute.Integer;
+  };
+}
+
 export interface ApiAccountDetailAccountDetail
   extends Struct.CollectionTypeSchema {
   collectionName: 'account_details';
@@ -1083,6 +1119,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::account-address.account-address': ApiAccountAddressAccountAddress;
       'api::account-detail.account-detail': ApiAccountDetailAccountDetail;
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
