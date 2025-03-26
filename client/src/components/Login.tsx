@@ -53,7 +53,7 @@ const Login: React.FC<LoginProps> = ({ className, onChangeMode, onLogged }) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
+      //console.log(data);
       // save user data
       toLocalStorage<IUser>("user", data.login);
       // close modal

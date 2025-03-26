@@ -12,7 +12,7 @@ export default async function AccountLayout({
     <Container className="pt-61">
       <div className="flex gap-28">
         <AccountSide activeMenu="Account Details" menu={sideMenu} />
-        <div>{children}</div>
+        <div className="grow">{children}</div>
       </div>
     </Container>
   );

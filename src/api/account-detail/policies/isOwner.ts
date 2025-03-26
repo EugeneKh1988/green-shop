@@ -11,7 +11,7 @@ export default async (policyContext, config, { strapi }) => {
 
   if (results && results.length > 0) {
     const found = results[0];
-    console.log(found);
+    //console.log(found);
     // for API
     if (
       found &&

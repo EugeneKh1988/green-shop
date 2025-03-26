@@ -58,7 +58,7 @@ export default {
               if (data.results && data.results.length > 0) {
                 return data.results[0];
               }
-              return {};
+              return {documentId: ""};
             },
           },
         },

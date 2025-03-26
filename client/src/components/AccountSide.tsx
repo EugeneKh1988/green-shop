@@ -16,7 +16,7 @@ const AccountSide: React.FC<AccountSideProps> = ({
   const classNameValue = className ? `${className}` : "";
 
   return (
-    <div className={`bg-alabaster min-w-310 ${classNameValue}`}>
+    <div className={`bg-alabaster min-w-160 md:min-w-310 ${classNameValue}`}>
       <h2 className="font-bold text-[18px] leading-16 pt-17 pl-18">
         My Account
       </h2>

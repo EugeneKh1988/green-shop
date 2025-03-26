@@ -1,3 +1,4 @@
+import { strict } from "assert";
 
 interface ILink {
     name: string;
@@ -190,4 +191,14 @@ export interface IUser {
     email?: string;
     confirmed?: boolean;
   };
+}
+
+export interface IAccountDetail {
+  documentId?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  tel?: string;
+  userName?: string;
+  user_id?: number;
 }
