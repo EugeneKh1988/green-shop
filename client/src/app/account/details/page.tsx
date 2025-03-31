@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 export default function AccountDetailsPage() {
   const [shown, viewPassword] = useState(false);
   
-  const [getInitialData, { data: dbData, error: dbDataError, loading: initLoading }] = useLazyQuery<{accountDetail: IAccountDetail}>(
+  const [getInitialData, { data: dbData, error: dbDataError, loading: initLoading, refetch }] = useLazyQuery<{accountDetail: IAccountDetail}>(
     accountDetailsQuery,
     {
       errorPolicy: "all",
@@ -97,6 +97,8 @@ export default function AccountDetailsPage() {
       message: "Data was saved",
       color: "green",
     });
+    // refetch data 
+    refetch();
   }
 
   // show notification when data change
@@ -105,6 +107,8 @@ export default function AccountDetailsPage() {
       message: "Data was changed",
       color: "green",
     });
+    // refetch data 
+    refetch();
   }
 
   // save jwt and show notofication

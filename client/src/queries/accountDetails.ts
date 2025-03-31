@@ -68,6 +68,6 @@ export const accountDetailUpdateMutVariables = (documentId: string, data: IAccou
     variables.data.userName = data.userName;
     variables.data.tel = data.tel;
   }
-  console.log("Variab", variables);
+  //console.log("Variab", variables);
   return variables;
 };

@@ -17,16 +17,16 @@
     "street": {
       "type": "string"
     },
-    "appartment": {
-      "type": "integer"
-    },
-    "zip": {
-      "type": "integer"
-    },
     "user_id": {
       "type": "biginteger",
       "required": true,
       "unique": true
+    },
+    "appartment": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
     }
   }
 }

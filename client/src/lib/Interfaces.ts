@@ -202,3 +202,12 @@ export interface IAccountDetail {
   userName?: string;
   user_id?: number;
 }
+
+export interface IAccountAddress {
+  documentId?: string;
+  town?: string;
+  street?: string;
+  appartment?: string;
+  zip?: string;
+  user_id?: number;
+}

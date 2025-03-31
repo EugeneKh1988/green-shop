@@ -382,7 +382,7 @@ export interface ApiAccountAddressAccountAddress
     draftAndPublish: true;
   };
   attributes: {
-    appartment: Schema.Attribute.Integer;
+    appartment: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -401,7 +401,7 @@ export interface ApiAccountAddressAccountAddress
     user_id: Schema.Attribute.BigInteger &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    zip: Schema.Attribute.Integer;
+    zip: Schema.Attribute.String;
   };
 }
 
