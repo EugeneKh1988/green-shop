@@ -81,6 +81,10 @@ export const plantsQuery = gql`
         category {
           slug
         }
+        sizeCount {
+          count
+          size
+        }
       }
       pageInfo {
         pageCount

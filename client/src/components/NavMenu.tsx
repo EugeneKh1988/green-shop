@@ -7,6 +7,8 @@ import { NavProps } from "./Nav";
 import Link from "next/link";
 import StrapiImage from "./StrapiImage";
 import { getImageUrl } from "@/utils/utils";
+import CartBadge from "./CartBadge";
+import LoginOrRegister from "./LoginOrRegister";
 
 
 
@@ -76,22 +78,9 @@ const NavMenu: React.FC<NavProps> = ({
                 className="relative overflow-visible"
               >
                 <SvgIcon iconName="cart" />
-                <Badge
-                  circle
-                  className="absolute bg-chateau-green size-12 text-[10px] font-medium top-5 right-0"
-                >
-                  6
-                </Badge>
+                <CartBadge />
               </ActionIcon>
-              <Button
-                leftSection={<SvgIcon iconName="logout" />}
-                classNames={{
-                  root: "bg-chateau-green hover:bg-chateau-green-600 text-white font-medium text-[16px] leading-20 rounded-[6px]",
-                  section: "mr-4",
-                }}
-              >
-                Login
-              </Button>
+              <LoginOrRegister />
             </div>
           </Drawer.Body>
         </Drawer.Content>

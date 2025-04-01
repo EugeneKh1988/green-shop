@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import SvgIcon from "./SvgIcon";
 import Link from "next/link";
 import { discountPrice } from "@/utils/utils";
+import AddToCard from "./AddToCart";
 
 
 interface PlantInfoProps {
@@ -104,9 +105,7 @@ const PlantInfo: React.FC<PlantInfoProps> = ({ plantItem, className }) => {
         <Button className="min-h-40 ml-26 uppercase bg-chateau-green hover:bg-chateau-green-600 text-white font-bold text-[14px] leading-20 rounded-[6px]">
           Buy NOW
         </Button>
-        <Button className="min-h-40 uppercase text-chateau-green font-bold text-[14px] leading-20 rounded-[6px] bg-transparent border border-chateau-green hover:bg-chateau-green hover:text-white">
-          Add to cart
-        </Button>
+        <AddToCard plantCart={{documentId: plantItem?.documentId, name: plantItem?.name, sizeCount: {size: sizeCount.size, count: count}}} />
         <ActionIcon
           variant="outline"
           size={40}

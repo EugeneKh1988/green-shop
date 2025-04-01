@@ -9,8 +9,9 @@ import { getImageUrl } from "@/utils/utils";
 import Image from "next/image";
 import footer from "../../public/footer.svg";
 import LoginOrRegister from "./LoginOrRegister";
+import CartBadge from "./CartBadge";
 
-interface NavProps {
+export interface NavProps {
   header: IHeader;
   images: IImage[];
   activeMenuName: string;
@@ -59,12 +60,7 @@ const Nav: React.FC<NavProps> = ({
               className="relative overflow-visible"
             >
               <SvgIcon iconName="cart" />
-              <Badge
-                circle
-                className="absolute bg-chateau-green size-12 text-[10px] font-medium top-5 right-0"
-              >
-                6
-              </Badge>
+              <CartBadge />
             </ActionIcon>
             <LoginOrRegister />
           </div>

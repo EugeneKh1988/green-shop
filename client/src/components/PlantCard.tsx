@@ -1,10 +1,11 @@
 
-import { IPlant, } from "@/lib/Interfaces";
+import { IPlant, IPlantCart, } from "@/lib/Interfaces";
 import StrapiImage from "./StrapiImage";
 import Link from "next/link";
 import { ActionIcon } from "@mantine/core";
 import SvgIcon from "./SvgIcon";
-import { discountPrice } from "@/utils/utils";
+import { discountPrice, fromLocalStorage, plantsCount, toCart, toLocalStorage } from "@/utils/utils";
+import { useGlobalContext } from "@/app/Context/store";
 
 interface PlantCardProps {
   plant: IPlant;
@@ -13,6 +14,19 @@ interface PlantCardProps {
 
 const PlantCard: React.FC<PlantCardProps> = ({ plant, className }) => {
   const classNameValue = className ? `${className}` : "";
+  const { setProductCartCount } = useGlobalContext();
+
+  // add plant to cart
+  const addToCart = () => {
+    const plantCart: IPlantCart = {
+      documentId: plant?.documentId,
+      name: plant?.name,
+      photo: plant?.cover,
+      sizeCount: plant?.sizeCount && plant?.sizeCount.length > 0 ? {size: plant?.sizeCount[0].size, count: 1} : {},
+    };
+    toCart(plantCart);
+    setProductCartCount(plantsCount());
+  };
 
   return (
     <div className={` ${classNameValue}`}>
@@ -32,6 +46,7 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant, className }) => {
             variant="white"
             size={35}
             className="rounded-[4px] hover:text-chateau-green"
+            onClick={() => addToCart()}
           >
             <SvgIcon iconName="cart" />
           </ActionIcon>

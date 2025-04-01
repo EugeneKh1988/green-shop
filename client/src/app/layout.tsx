@@ -14,6 +14,7 @@ import type { Metadata } from "next";
 import { theme } from '@/theme';
 import { ApolloWrapper } from '@/lib/apollo-wrapper';
 import { Notifications } from "@mantine/notifications";
+import { GlobalContextProvider } from './Context/store';
 
 export const metadata: Metadata = {
   title: "GreenShop Home page",
@@ -33,7 +34,9 @@ export default function RootLayout({
       <body>
         <MantineProvider theme={theme}>
           <Notifications />
-          <ApolloWrapper>{children}</ApolloWrapper>
+          <ApolloWrapper>
+            <GlobalContextProvider>{children}</GlobalContextProvider>
+          </ApolloWrapper>
         </MantineProvider>
       </body>
     </html>

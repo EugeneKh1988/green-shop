@@ -156,6 +156,13 @@ export interface IPlant {
   sizeCount?: ISizeCount[];
 }
 
+export interface IPlantCart {
+  documentId?: string;
+  name?: string;
+  photo?: IImage;
+  sizeCount?: ISizeCount;
+}
+
 export interface IPlantPage {
   pageCount?: number;
   total?: number;
