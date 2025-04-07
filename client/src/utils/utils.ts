@@ -24,7 +24,11 @@ export const discountPrice = (discount?: number, price?: number) => {
 
 // get from localStorage
 export function fromLocalStorage<StorageType>(key: string): StorageType | null {
-  const itemStr = localStorage.getItem(key);
+  // null if run on server
+  if(typeof window === "undefined") {
+    return null;
+  }
+  const itemStr = localStorage?.getItem(key);
   if (itemStr) {
     const item: StorageType = JSON.parse(itemStr);
     return item;
@@ -35,11 +39,19 @@ export function fromLocalStorage<StorageType>(key: string): StorageType | null {
 
 // set data to localStorage
 export function toLocalStorage<StorageType>(key: string, data: StorageType) {
+  // if run on server
+  if(typeof window === "undefined") {
+    return;
+  }
   localStorage.setItem(key, JSON.stringify(data));
 }
 
 // delete data from localStorage
 export function delFromLocalStorage(key: string) {
+  // if run on server
+  if(typeof window === "undefined") {
+    return;
+  }
   localStorage.removeItem(key);
 }
 
@@ -50,7 +62,7 @@ export const toCart = (plantCart: IPlantCart) => {
   if (!cartPlants) {
     toLocalStorage<IPlantCart[]>("cart", [plantCart]);
   }
-  if (cartPlants && cartPlants.length > 0) {
+  if (cartPlants && cartPlants.length >= 0) {
     // change cart count value
     const foundedIndex = cartPlants.findIndex(
       (cartItem) =>

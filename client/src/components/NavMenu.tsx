@@ -73,6 +73,8 @@ const NavMenu: React.FC<NavProps> = ({
             />
             <div className="flex gap-30">
               <ActionIcon
+                component={Link}
+                href="/cart"
                 variant="transparent"
                 size={32}
                 className="relative overflow-visible"

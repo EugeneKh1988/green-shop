@@ -1,19 +1,15 @@
 "use client";
 
-import SvgIcon from "@/components/SvgIcon";
-import { IAccountAddress, IAccountDetail, IUser, } from "@/lib/Interfaces";
+import { IAccountAddress, } from "@/lib/Interfaces";
 import { accountAddressCreateMut, accountAddressCreateMutVariables, accountAddressQuery, accountAddressUpdateMut, accountAddressUpdateMutVariables } from "@/queries/accountAddress";
-import { accountDetailCreateMut, accountDetailCreateMutVariables, accountDetailsQuery, accountDetailUpdateMut, accountDetailUpdateMutVariables } from "@/queries/accountDetails";
-import { changePasswordMut, changePasswordMutVariables } from "@/queries/changePassword";
-import { delFromLocalStorage, toLocalStorage } from "@/utils/utils";
+import { delFromLocalStorage } from "@/utils/utils";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import { Button, TextInput } from "@mantine/core";
-import { matchesField, useForm } from "@mantine/form";
+import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function AccountDetailsPage() {
-  const [shown, viewPassword] = useState(false);
   
   const [getInitialData, { data: dbData, error: dbDataError, loading: initLoading, refetch }] = useLazyQuery<{accountAddress: IAccountAddress}>(
     accountAddressQuery,

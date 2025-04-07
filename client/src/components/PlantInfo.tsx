@@ -80,7 +80,9 @@ const PlantInfo: React.FC<PlantInfoProps> = ({ plantItem, className }) => {
           <div
             key={index}
             className={`flex justify-center items-center cursor-pointer size-28 rounded-full border ${sizeItem?.size === sizeCount?.size ? "border-chateau-green text-chateau-green text-[18px] font-bold" : "border-[#EAEAEA] text-dove-gray text-[14px] font-medium"}  leading-16`}
-            onClick={() => {changeSize(sizeItem)}}
+            onClick={() => {
+              changeSize(sizeItem);
+            }}
           >
             {sizeItem?.size}
           </div>
@@ -105,7 +107,13 @@ const PlantInfo: React.FC<PlantInfoProps> = ({ plantItem, className }) => {
         <Button className="min-h-40 ml-26 uppercase bg-chateau-green hover:bg-chateau-green-600 text-white font-bold text-[14px] leading-20 rounded-[6px]">
           Buy NOW
         </Button>
-        <AddToCard plantCart={{documentId: plantItem?.documentId, name: plantItem?.name, sizeCount: {size: sizeCount.size, count: count}}} />
+        <AddToCard
+          plantCart={{
+            documentId: plantItem?.documentId,
+            name: plantItem?.name,
+            sizeCount: { size: sizeCount.size, count: count },
+          }}
+        />
         <ActionIcon
           variant="outline"
           size={40}

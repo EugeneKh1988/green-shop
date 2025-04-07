@@ -39,7 +39,7 @@ const CartBadge: React.FC<CartBadgeProps> = ({ className }) => {
       {productCartCount > 0 ? (
         <Badge
           circle
-          className="absolute bg-chateau-green size-12 text-[10px] font-medium top-5 right-0"
+          className={`absolute bg-chateau-green text-[10px] font-medium right-0 leading-12 ${productCartCount > 9 ? 'size-18 bottom-0': 'size-12 top-5'}`}
         >
           {productCartCount}
         </Badge>

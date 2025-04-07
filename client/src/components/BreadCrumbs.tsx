@@ -17,7 +17,7 @@ const BreadCrumbs = ({
         {links.map((item, index) => (
           <React.Fragment key={index}>
             {item.href ? (
-              <Link href={item.href} className="font-bold">
+              <Link href={item.href} className={`${index === 0 ? 'font-bold': 'font-normal'}`}>
                 {item.name}
               </Link>
             ) : (

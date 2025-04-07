@@ -55,6 +55,8 @@ const Nav: React.FC<NavProps> = ({
               <SvgIcon iconName="find" />
             </ActionIcon>
             <ActionIcon
+              component={Link}
+              href="/cart"
               variant="transparent"
               size={32}
               className="relative overflow-visible"

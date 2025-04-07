@@ -159,6 +159,8 @@ export interface IPlant {
 export interface IPlantCart {
   documentId?: string;
   name?: string;
+  price?: number;
+  discount?: number,
   photo?: IImage;
   sizeCount?: ISizeCount;
 }
