@@ -21,7 +21,7 @@ const HomeBlog: React.FC<HomeBlogProps> = ({ posts, className }) => {
   };
 
   return (
-    <Container className={`mt-40 mb-25 lg:mt-138 md:mb-100 ${classNameValue}`}>
+    <Container className={` ${classNameValue}`}>
       <h1 className="text-center font-bold text-[20px] md:text-[30px]">
         Our Blog Posts
       </h1>
