@@ -20,12 +20,12 @@ interface CartProps {
 const Cart: React.FC<CartProps> = ({ className }) => {
   const classNameValue = className ? `${className}` : "";
   // context
-  const { productCartCount, setProductCartCount } = useGlobalContext();
+  const { setProductCartCount } = useGlobalContext();
   // plant from localStorage
   const [cartPlants, setCartPlants] = useState<IPlantCart[]>([]);
   const [
     getPlantsData,
-    { data: dbData, error: dbDataError, loading: initLoading, refetch },
+    { data: dbData, error: dbDataError, refetch },
   ] = useLazyQuery<{ plants: IPlant[] }>(cartPlantsQuery, {
     errorPolicy: "all",
   });
@@ -64,13 +64,13 @@ const Cart: React.FC<CartProps> = ({ className }) => {
   }, [dbDataError]);
 
   // cartPlant by documentId
-  const cartPlantByDocumentId = (documentId: string) => {
+  /* const cartPlantByDocumentId = (documentId: string) => {
     if(cartPlants && cartPlants.length > 0) {
       const resArr = cartPlants.filter(item => item.documentId == documentId);
       return resArr && resArr.length > 0 ? resArr[0] : null;
     }
     return null;
-  };
+  }; */
 
   // plants data by documentId
   const dbPlantByDocumentId = (documentId: string) => {
@@ -85,11 +85,17 @@ const Cart: React.FC<CartProps> = ({ className }) => {
     // copy cart plants
     const updatedCartPlants = [...cartPlants];
     // find index of plant by documentId
-    const foundIndex = updatedCartPlants.findIndex(value => value.documentId === documentId && value.sizeCount?.size === size);
-    if(foundIndex >=0 && updatedCartPlants[foundIndex].sizeCount?.count) {
-      let count = updatedCartPlants[foundIndex].sizeCount?.count;
+    const foundIndex = updatedCartPlants.findIndex(
+      (value) =>
+        value.documentId === documentId && value.sizeCount?.size === size
+    );
+    if (foundIndex >= 0 && updatedCartPlants[foundIndex].sizeCount?.count) {
+      const count = updatedCartPlants[foundIndex].sizeCount?.count;
       // change count
-      count > 1 ?  updatedCartPlants[foundIndex].sizeCount.count = updatedCartPlants[foundIndex].sizeCount?.count - 1 : null;
+      if (count > 1) {
+        updatedCartPlants[foundIndex].sizeCount.count =
+          updatedCartPlants[foundIndex].sizeCount?.count - 1;
+      }
       // change state to rerender
       setCartPlants(updatedCartPlants);
       // save to localStorage
@@ -99,14 +105,30 @@ const Cart: React.FC<CartProps> = ({ className }) => {
     }
   };
 
-  const increaseCount = (documentId?: string, size?: string, sizeCount?: ISizeCount[]) => {
+  const increaseCount = (
+    documentId?: string,
+    size?: string,
+    sizeCount?: ISizeCount[]
+  ) => {
     const updatedCartPlants = [...cartPlants];
-    const foundIndex = updatedCartPlants.findIndex(value => value.documentId === documentId && value.sizeCount?.size === size);
-    if(foundIndex >=0 && updatedCartPlants[foundIndex].sizeCount?.count && sizeCount) {
-      let count = updatedCartPlants[foundIndex].sizeCount?.count;
-      const foundsizeCount = sizeCount.filter(item => item.size === updatedCartPlants[foundIndex].sizeCount?.size);
-      if(foundsizeCount && foundsizeCount.length > 0) {
-        count < (foundsizeCount[0].count || 1) ?  updatedCartPlants[foundIndex].sizeCount.count = updatedCartPlants[foundIndex].sizeCount?.count + 1 : null;
+    const foundIndex = updatedCartPlants.findIndex(
+      (value) =>
+        value.documentId === documentId && value.sizeCount?.size === size
+    );
+    if (
+      foundIndex >= 0 &&
+      updatedCartPlants[foundIndex].sizeCount?.count &&
+      sizeCount
+    ) {
+      const count = updatedCartPlants[foundIndex].sizeCount?.count;
+      const foundsizeCount = sizeCount.filter(
+        (item) => item.size === updatedCartPlants[foundIndex].sizeCount?.size
+      );
+      if (foundsizeCount && foundsizeCount.length > 0) {
+        if (count < (foundsizeCount[0].count || 1)) {
+          updatedCartPlants[foundIndex].sizeCount.count =
+            updatedCartPlants[foundIndex].sizeCount?.count + 1;
+        }
         setCartPlants(updatedCartPlants);
         toLocalStorage<IPlantCart[]>("cart", updatedCartPlants);
         setProductCartCount(plantsCount());

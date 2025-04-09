@@ -1,5 +1,4 @@
 import { Button, Combobox, useCombobox } from "@mantine/core";
-import { useEffect } from "react";
 import SvgIcon from "./SvgIcon";
 
 

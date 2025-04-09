@@ -51,7 +51,7 @@ const NewsLetter: React.FC<NewsLetterProps> = ({ newsletter,images, className })
             </Button>
           </div>
           <p className="mt-17 text-[13px] leading-22 text-dove-gray">
-            We usually post offers and challenges in newsletter. We're your
+            We usually post offers and challenges in newsletter. We&apos;re your
             online houseplant destination. We offer a wide range of houseplants
             and accessories shipped directly from our (green)house to yours!
           </p>

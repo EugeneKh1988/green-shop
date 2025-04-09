@@ -2,7 +2,7 @@ import { IHeader, IImage } from "@/lib/Interfaces";
 import Container from "@/components/Container";
 import StrapiImage from "@/components/StrapiImage";
 import Link from "next/link";
-import { ActionIcon, Badge, Button, TextInput } from "@mantine/core";
+import { ActionIcon, TextInput } from "@mantine/core";
 import SvgIcon from "./SvgIcon";
 import NavMenu from "./NavMenu";
 import { getImageUrl } from "@/utils/utils";

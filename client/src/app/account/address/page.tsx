@@ -48,7 +48,6 @@ export default function AccountDetailsPage() {
   const [
     addressUpdateMut,
     {
-      data: updatedData,
       loading: updateLoading,
       error: updateError,
     },

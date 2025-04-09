@@ -73,7 +73,6 @@ export default function AccountDetailsPage() {
   const [
     detailUpdateMut,
     {
-      data: updatedData,
       loading: updateLoading,
       error: updateError,
     },
@@ -85,7 +84,6 @@ export default function AccountDetailsPage() {
   const [
     changePassMut,
     {
-      data: userData,
       error: changePasswordError,
     },
   ] = useMutation<{changePassword: IUser}>(changePasswordMut, {onCompleted: onChangePassword});

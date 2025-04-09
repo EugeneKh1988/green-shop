@@ -1,7 +1,7 @@
 "use client"
 
 import { IPlant, ISizeCount } from "@/lib/Interfaces";
-import { ActionIcon, Button, RangeSlider } from "@mantine/core";
+import { ActionIcon, Button, } from "@mantine/core";
 import { useEffect, useState } from "react";
 import SvgIcon from "./SvgIcon";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const PlantInfo: React.FC<PlantInfoProps> = ({ plantItem, className }) => {
     }
   }, []);
 
-  const getsize = (sizeName: string) => {
+  /* const getsize = (sizeName: string) => {
     if (sizeName == "small") {
       return "S";
     } else if (sizeName == "medium") {
@@ -34,7 +34,7 @@ const PlantInfo: React.FC<PlantInfoProps> = ({ plantItem, className }) => {
       return "L";
     }
     return "";
-  };
+  }; */
 
   const decreaseCount = () => {
     if(count > 1) {

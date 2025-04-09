@@ -1,4 +1,3 @@
-import { strict } from "assert";
 
 interface ILink {
     name: string;
